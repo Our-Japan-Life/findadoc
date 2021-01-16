@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# findadoc
-=======
 # findadoc
 
 ## Build Setup
@@ -21,4 +18,3 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
->>>>>>> 8f3647b... first commit
