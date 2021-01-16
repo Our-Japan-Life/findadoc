@@ -1,0 +1,86 @@
+<template>
+  <div class="header-bg">
+    <div class="center">
+      <h1>Our Japan Life</h1>
+    </div>
+    <div class="center">
+      <button class="database-btn">Database</button>
+    </div>
+    <div class="center">
+      <button class="blog-btn">Blog</button>
+    </div>
+    <div class="center">
+      <button class="login-btn">Login</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap");
+
+.header-bg {
+  background-color: rgb(47, 45, 58);
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  color: rgb(226, 226, 226);
+  padding-right: 8px;
+}
+h1 {
+  color: #fff;
+}
+.center {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.database-btn {
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  font-family: Yusei Magic;
+  font-size: 16px;
+  background-color: #000;
+  color: #fff;
+}
+.blog-btn {
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  font-family: Yusei Magic;
+  font-size: 16px;
+  background-color: rgb(47, 45, 58);
+  color: rgb(226, 226, 226);
+}
+.blog-btn:hover {
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  font-family: Yusei Magic;
+  font-size: 16px;
+  background-color: rgb(70, 68, 85);
+  color: rgb(226, 226, 226);
+}
+.login-btn {
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  font-family: Yusei Magic;
+  font-size: 16px;
+  background-color: rgb(47, 45, 58);
+  color: rgb(226, 226, 226);
+}
+.login-btn:hover {
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  font-family: Yusei Magic;
+  font-size: 16px;
+  background-color: rgb(70, 68, 85);
+  color: rgb(226, 226, 226);
+}
+</style>
