@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <div class="center">
       <h2>Index</h2>
     </div>

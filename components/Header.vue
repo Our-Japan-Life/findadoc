@@ -1,16 +1,16 @@
 <template>
   <div class="header-bg">
     <div class="center">
-      <h1>Our Japan Life</h1>
+      <nuxt-link to="/"><h1>Our Japan Life</h1></nuxt-link>
     </div>
     <div class="center">
-      <button class="database-btn">Database</button>
+      <nuxt-link to="/database"><button class="database-btn">Database</button></nuxt-link>
     </div>
     <div class="center">
-      <button class="blog-btn">Blog</button>
+      <nuxt-link to="/blog"><button class="blog-btn">Blog</button></nuxt-link>
     </div>
     <div class="center">
-      <button class="login-btn">Login</button>
+      <nuxt-link to="/login"><button class="login-btn">Login</button></nuxt-link>
     </div>
   </div>
 </template>
