@@ -20,7 +20,7 @@ export default {};
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
 
 .header-bg {
   background-color: rgb(47, 45, 58);
@@ -42,7 +42,7 @@ h1 {
   height: 30px;
   border: 0px;
   border-radius: 5px;
-  font-family: Yusei Magic;
+  font-family: 'Noto Serif JP', serif;
   font-size: 16px;
   background-color: #000;
   color: #fff;
@@ -51,7 +51,7 @@ h1 {
   height: 30px;
   border: 0px;
   border-radius: 5px;
-  font-family: Yusei Magic;
+  font-family: 'Noto Serif JP', serif;
   font-size: 16px;
   background-color: rgb(47, 45, 58);
   color: rgb(226, 226, 226);
@@ -60,7 +60,7 @@ h1 {
   height: 30px;
   border: 0px;
   border-radius: 5px;
-  font-family: Yusei Magic;
+  font-family: 'Noto Serif JP', serif;
   font-size: 16px;
   background-color: rgb(70, 68, 85);
   color: rgb(226, 226, 226);
@@ -69,7 +69,7 @@ h1 {
   height: 30px;
   border: 0px;
   border-radius: 5px;
-  font-family: Yusei Magic;
+  font-family: 'Noto Serif JP', serif;
   font-size: 16px;
   background-color: rgb(47, 45, 58);
   color: rgb(226, 226, 226);
@@ -78,7 +78,7 @@ h1 {
   height: 30px;
   border: 0px;
   border-radius: 5px;
-  font-family: Yusei Magic;
+  font-family: 'Noto Serif JP', serif;
   font-size: 16px;
   background-color: rgb(70, 68, 85);
   color: rgb(226, 226, 226);
