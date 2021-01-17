@@ -49,7 +49,7 @@ methods: {
       if (togglePassword.type === "password") {
         togglePassword.type = "text";
       } else {
-        togglePassword.type = "password";
+        togglePassword.type = "password"; 
       }
     },
     checkPasswordLength() {
