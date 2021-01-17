@@ -1,93 +1,23 @@
 <template>
-  <div class="center">
-    <!-- <h2>Database</h2> -->
-    <!-- <div>
-      {{ doctors }}
+  <div class="center" id="app">
+    <div><h2>Database</h2></div>
+    <div>
+      <button class="add-doctor-btn" @click="modal.showModal = true">
+        Add Doctor
+      </button>
     </div>
-    <button @click="getDoctors()">Read all from Firestore</button>
-    <button @click="createDoctor()">Send new document to Firestore</button>
-    <button @click="deleteDoctor()">Delete from Firestore</button>
-    <button @click="updateDoctor()">Send update to Firestore</button> -->
-
-    <form action="submit" class="">
-      <div>
-        <input
-          class="input-fields"
-          type="text"
-          placeholder="First name"
-          v-model="doctor.first_name"
-          required
-        />
+    <transition name="fade" appear>
+      <div
+        class="modal-overlay"
+        v-if="modal.showModal"
+        @click="modal.showModal = false"
+      ></div>
+    </transition>
+    <transition name="slide" appear>
+      <div class="modal" v-if="modal.showModal">
+        <SubmitDoctor />
       </div>
-      <div>
-        <input
-          class="input-fields"
-          type="text"
-          placeholder="Last name"
-          v-model="doctor.last_name"
-          required
-        />
-      </div>
-      <div class="padded-input center">
-        <label for="doctors-specialty" class="label-margin"
-          >Doctor's Specialty:</label
-        >
-
-        <select
-          name="doctors-specialty"
-          id="doctors-specialty"
-          v-model="doctor.specialties"
-          required
-        >
-          <option value="General Physician">General Physician</option>
-          <option value="Dermatologist">Dermatologist</option>
-          <option value="Dentist">Dentist</option>
-        </select>
-      </div>
-      <div class="padded-input center">
-        <label for="doctors-rating" class="label-margin"
-          >Doctor's English-Speaking Ability:</label
-        >
-
-        <select
-          name="doctors-rating"
-          id="doctors-rating"
-          v-model="doctor.rating"
-          required
-        >
-          <option value="1">1 (Low)</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5 (High)</option>
-        </select>
-      </div>
-      <div>
-        <input
-          class="input-fields"
-          type="text"
-          placeholder="Google Maps link"
-          v-model="doctor.address"
-          required
-        />
-      </div>
-      <div class="padded-input center">
-        <label for="doctors-reservation" class="label-margin"
-          >Can you make reservations in English?</label
-        >
-
-        <select
-          name="doctors-reservations"
-          id="doctors-reservations"
-          v-model="doctor.english_reservation"
-          required
-        >
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </div>
-      <button @click="submitForm()" class="submit-btn-form">Submit Information</button>
-    </form>
+    </transition>
   </div>
 </template>
 
@@ -110,6 +40,9 @@ export default {
         website: "",
         english_reservation: false,
         address: "",
+      },
+      modal: {
+        showModal: false,
       },
     };
   },
@@ -164,22 +97,68 @@ export default {
 </script>
 
 <style>
-.padded-input {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.submit-btn-form {
-  background-color: rgb(47, 45, 58);
-  width: 400px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.add-doctor-btn {
+  background-color: rgb(194, 227, 228);
   height: 30px;
   border: 0px;
   border-radius: 5px;
-  color: #fff;
+  font-family: "Noto Serif JP", serif;
   font-size: 16px;
+  color: #000;
+  cursor: pointer;
 }
-.label-margin {
-  margin-right: 10px;
+.db-div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+
+  padding: 25px;
+}
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 98;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#app {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.5s;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateY(-50%) translateX(100vw);
 }
 </style>
