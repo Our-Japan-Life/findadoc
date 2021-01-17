@@ -15,12 +15,28 @@
           <div class="db-padding">
             <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
           </div>
-          <div class="db-padding">Specialty: {{ item.specialties[0] }}</div>
+          <div v-for="specialty of item.specialties" :key="specialty" class="db-padding">
+            <!-- <div> -->
+              {{ specialty }}
+            <!-- </div> -->
+          </div>
           <div class="db-padding">Rating: {{ item.rating }}/5</div>
           <div class="db-padding">Location: {{ item.address }}</div>
           <div class="db-icons">
-              <a class="db-links" :href="item.website" target="_blank" rel="noopener noreferrer"><img src="~/assets/homepage.svg" /></a>
-              <a class="db-links" :href="item.location" target="_blank" rel="noopener noreferrer"><img src="~/assets/map.svg" /></a>
+            <a
+              class="db-links"
+              :href="item.website"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img src="~/assets/homepage.svg"
+            /></a>
+            <a
+              class="db-links"
+              :href="item.location"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><img src="~/assets/map.svg"
+            /></a>
           </div>
         </div>
       </div>
@@ -79,7 +95,7 @@ export default {
         });
 
         this.doctors = tempDoctors;
-        console.log(this.doctors)
+        console.log(this.doctors);
       });
     },
     // submitForm() {
@@ -142,7 +158,7 @@ export default {
   overflow-x: hidden;
 }
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
   box-shadow: 0 4px 8px 0 rgb(130, 182, 184);
 }
 .column {
@@ -168,7 +184,6 @@ export default {
   text-align: right;
   padding-left: 20px;
 }
-
 .modal {
   position: fixed;
   top: 50%;

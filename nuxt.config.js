@@ -1,7 +1,17 @@
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
-  
+  services: {
+    auth: true,
+    firestore: true,
+    functions: true,
+    storage: true,
+    database: false,
+    messaging: true,
+    performance: true,
+    analytics: true,
+    remoteConfig: true
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "findadoc",
