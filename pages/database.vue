@@ -15,7 +15,8 @@
             <div class="db-padding">Specialty: {{ item.specialties[0] }}</div>
             <div class="db-padding"> Rating: {{ item.rating }}/5</div>
             <div class="db-padding">Location: {{ item.address }}</div>
-            <div class="db-padding">Website: {{ item.website }}</div>
+            <!-- <div class="db-padding">Website: {{ item.website }}</div> -->
+            <div class="db-globe"><a :href="item.website"><img src="~/assets/url.svg" /></a></div>
         </div>
       </div>
     </div>
@@ -151,6 +152,10 @@ export default {
 .db-padding {
   margin: 10px;
   text-align: left;
+}
+.db-globe {
+  margin: 10px;
+  text-align: right;
 }
 .modal {
   position: fixed;
