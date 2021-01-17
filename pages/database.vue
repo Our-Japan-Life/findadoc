@@ -10,13 +10,13 @@
         </button>
       </div>
       <div>
-        <div v-for="item in doctors" :key="item.id" class="center db-padding">
-          <div>
-            Name
+        <div v-for="item in doctors" :key="item.id" class="card column">
+          <!-- <div>
+            Name -->
             <div class="db-padding">
-              Dr. {{ item.first_name }} {{ item.last_name }}
+              <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
             </div>
-          </div>
+          <!-- </div> -->
           <div>
             Specialty
             <div class="db-padding">
@@ -142,13 +142,34 @@ export default {
   color: #000;
   cursor: pointer;
 }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 0px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  min-width: 360px;
+  transition: transform 0.2s;
+  overflow-x: hidden;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px 0 rgba(194, 227, 228);
+}
+.column {
+  float: left;
+  width: 25%;
+  padding: 0px;
+  margin: 20px;
+}
 .db-div {
   width: 80%;
   text-align: center;
-  padding: 10px;
 }
 .db-padding {
-  margin: 20px;
+  margin: 10px;
+  /* border:1px solid black; */
 }
 .modal {
   position: fixed;
