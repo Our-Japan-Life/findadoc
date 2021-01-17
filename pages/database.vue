@@ -130,13 +130,13 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   width: 100%;
-  min-width: 360px;
+  min-width: 100%;
   transition: transform 0.2s;
   overflow-x: hidden;
 }
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 8px 0 rgba(194, 227, 228);
+  box-shadow: 0 4px 8px 0 rgb(130, 182, 184);
 }
 .column {
   float: left;
