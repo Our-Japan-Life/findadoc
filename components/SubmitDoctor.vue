@@ -1,7 +1,15 @@
 <template>
   <div>
-    <div class="center" v-if="submitted === true">
-      <h1>Thank you for helping our community grow!</h1>
+    <div v-if="submitted === true">
+      <div class="close-window">
+        <button>Close</button>
+      </div>
+      <div class="center">
+        <h1 class="modal-title">Thank you for helping our community grow!</h1>
+      </div>
+      <div class="center">
+        <button class="add-doctor-btn" @click="submitted = false">Add another doctor</button>
+      </div>
     </div>
     <div class="center" v-if="submitted === false">
       <form action="submit" class="">
@@ -123,7 +131,7 @@ export default {
     submitForm() {
       create(this.doctor);
       this.submitted = true;
-      console.log(this.submitted)
+      console.log(this.submitted);
     },
     createDoctor() {
       const doctor = this.doctors.length ? this.doctors[0] : {};
@@ -140,8 +148,16 @@ export default {
 </script>
 
 <style>
+.close-window {
+  position: absolute;
+  font-size: 14px;
+  right: 20px;
+  cursor: pointer;
+  padding: 10px;
+}
 .modal-title {
   color: black;
+  text-align: center;
 }
 .padded-input {
   margin-top: 10px;

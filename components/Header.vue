@@ -16,7 +16,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    this.getCurrentURL();
+  },
+  data() {
+    return {
+     current_url: null
+    }
+  },
+  methods: {
+    getCurrentURL() { // should change background color of nav button to black if it is the current url
+      console.log(document.location)
+    }
+  }
+};
 </script>
 
 <style>
@@ -44,8 +58,17 @@ h1 {
   border-radius: 5px;
   font-family: 'Noto Serif JP', serif;
   font-size: 16px;
-  background-color: #000;
+  background-color: rgb(47, 45, 58);
   color: #fff;
+}
+.database-btn:hover {
+  height: 30px;
+  border: 0px;
+  border-radius: 5px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 16px;
+  background-color: rgb(70, 68, 85);
+  color: rgb(226, 226, 226);
 }
 .blog-btn {
   height: 30px;

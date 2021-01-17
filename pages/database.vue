@@ -9,7 +9,34 @@
           Add Doctor
         </button>
       </div>
-      <div v-for="item in doctors" :key="item.id">Dr. {{ item.first_name }} {{ item.last_name }}</div>
+      <div>
+        <div v-for="item in doctors" :key="item.id" class="center db-padding">
+          <div>
+            Name
+            <div class="db-padding">
+              Dr. {{ item.first_name }} {{ item.last_name }}
+            </div>
+          </div>
+          <div>
+            Specialty
+            <div class="db-padding">
+              {{ item.specialties[0] }}
+            </div>
+          </div>
+          <div>
+            Rating
+            <div class="db-padding">{{ item.rating }}/5</div>
+          </div>
+          <div>
+            Location
+            <div class="db-padding">{{ item.address }}</div>
+          </div>
+          <div>
+            Website
+            <div class="db-padding">{{ item.website }}</div>
+          </div>
+        </div>
+      </div>
     </div>
     <transition name="fade" appear>
       <div
@@ -117,13 +144,11 @@ export default {
 }
 .db-div {
   width: 80%;
-  
-  /* max-width: 400px; */
-  /* align-items: center; */
-  /* align-content: center; */
-  /* display: flex; */
-  /* justify-content: center; */
   text-align: center;
+  padding: 10px;
+}
+.db-padding {
+  margin: 10px;
 }
 .modal {
   position: fixed;
