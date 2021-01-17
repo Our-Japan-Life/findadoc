@@ -79,6 +79,7 @@ export default {
         });
 
         this.doctors = tempDoctors;
+        console.log(this.doctors)
       });
     },
     // submitForm() {
