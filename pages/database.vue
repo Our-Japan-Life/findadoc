@@ -11,30 +11,11 @@
       </div>
       <div>
         <div v-for="item in doctors" :key="item.id" class="card column">
-          <!-- <div>
-            Name -->
-            <div class="db-padding">
-              <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
-            </div>
-          <!-- </div> -->
-          <div>
-            Specialty
-            <div class="db-padding">
-              {{ item.specialties[0] }}
-            </div>
-          </div>
-          <div>
-            Rating
-            <div class="db-padding">{{ item.rating }}/5</div>
-          </div>
-          <div>
-            Location
-            <div class="db-padding">{{ item.address }}</div>
-          </div>
-          <div>
-            Website
-            <div class="db-padding">{{ item.website }}</div>
-          </div>
+            <div class="db-padding"><h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2></div>
+            <div class="db-padding">Specialty: {{ item.specialties[0] }}</div>
+            <div class="db-padding"> Rating: {{ item.rating }}/5</div>
+            <div class="db-padding">Location: {{ item.address }}</div>
+            <div class="db-padding">Website: {{ item.website }}</div>
         </div>
       </div>
     </div>
@@ -169,7 +150,7 @@ export default {
 }
 .db-padding {
   margin: 10px;
-  /* border:1px solid black; */
+  text-align: left;
 }
 .modal {
   position: fixed;
