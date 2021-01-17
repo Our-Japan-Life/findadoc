@@ -2,7 +2,7 @@
   <div class="" id="app">
     <div class="db-div">
       <div>
-        <h2>Database</h2>
+        <h2>English-Speaking Doctors in Japan</h2>
       </div>
       <div>
         <button class="add-doctor-btn" @click="modal.showModal = true">
@@ -148,7 +148,7 @@ export default {
   padding: 10px;
 }
 .db-padding {
-  margin: 10px;
+  margin: 20px;
 }
 .modal {
   position: fixed;
