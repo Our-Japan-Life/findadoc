@@ -1,93 +1,98 @@
 <template>
-  <div class="center">
-    <form action="submit" class="">
-      <div class="center">
-        <h1 class="modal-title">Add a Doctor</h1>
-      </div>
-      <div class="center">
-        <p>Please fill out this form as accurately as possible.</p>
-      </div>
+  <div>
+    <div class="center" v-if="submitted === true">
+      <h1>Thank you for helping our community grow!</h1>
+    </div>
+    <div class="center" v-if="submitted === false">
+      <form action="submit" class="">
+        <div class="center">
+          <h1 class="modal-title">Add a Doctor</h1>
+        </div>
+        <div class="center">
+          <p>Please fill out this form as accurately as possible.</p>
+        </div>
 
-      <div>
-        <input
-          class="input-fields"
-          type="text"
-          placeholder="First name"
-          v-model="doctor.first_name"
-          required
-        />
-      </div>
-      <div>
-        <input
-          class="input-fields"
-          type="text"
-          placeholder="Last name"
-          v-model="doctor.last_name"
-          required
-        />
-      </div>
-      <div class="padded-input center">
-        <label for="doctors-specialty" class="label-margin"
-          >Doctor's Specialty:</label
-        >
+        <div>
+          <input
+            class="input-fields"
+            type="text"
+            placeholder="First name"
+            v-model="doctor.first_name"
+            required
+          />
+        </div>
+        <div>
+          <input
+            class="input-fields"
+            type="text"
+            placeholder="Last name"
+            v-model="doctor.last_name"
+            required
+          />
+        </div>
+        <div class="padded-input center">
+          <label for="doctors-specialty" class="label-margin"
+            >Doctor's Specialty:</label
+          >
 
-        <select
-          name="doctors-specialty"
-          id="doctors-specialty"
-          v-model="doctor.specialties"
-          required
-        >
-          <option value="General Physician">General Physician</option>
-          <option value="Dermatologist">Dermatologist</option>
-          <option value="Dentist">Dentist</option>
-        </select>
-      </div>
-      <div class="padded-input center">
-        <label for="doctors-rating" class="label-margin"
-          >Doctor's English-Speaking Ability:</label
-        >
+          <select
+            name="doctors-specialty"
+            id="doctors-specialty"
+            v-model="doctor.specialties"
+            required
+          >
+            <option value="General Physician">General Physician</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Dentist">Dentist</option>
+          </select>
+        </div>
+        <div class="padded-input center">
+          <label for="doctors-rating" class="label-margin"
+            >Doctor's English-Speaking Ability:</label
+          >
 
-        <select
-          name="doctors-rating"
-          id="doctors-rating"
-          v-model="doctor.rating"
-          required
-        >
-          <option value="1">1 (Low)</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5 (High)</option>
-        </select>
-      </div>
-      <div>
-        <input
-          class="input-fields"
-          type="text"
-          placeholder="Google Maps link"
-          v-model="doctor.address"
-          required
-        />
-      </div>
-      <div class="padded-input center">
-        <label for="doctors-reservation" class="label-margin"
-          >Can you make reservations in English?</label
-        >
+          <select
+            name="doctors-rating"
+            id="doctors-rating"
+            v-model="doctor.rating"
+            required
+          >
+            <option value="1">1 (Low)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (High)</option>
+          </select>
+        </div>
+        <div>
+          <input
+            class="input-fields"
+            type="text"
+            placeholder="Google Maps link"
+            v-model="doctor.address"
+            required
+          />
+        </div>
+        <div class="padded-input center">
+          <label for="doctors-reservation" class="label-margin"
+            >Can you make reservations in English?</label
+          >
 
-        <select
-          name="doctors-reservations"
-          id="doctors-reservations"
-          v-model="doctor.english_reservation"
-          required
-        >
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-      </div>
-      <button @click="submitForm()" class="submit-btn-form">
-        Submit Information
-      </button>
-    </form>
+          <select
+            name="doctors-reservations"
+            id="doctors-reservations"
+            v-model="doctor.english_reservation"
+            required
+          >
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <button @click="submitForm()" class="submit-btn-form">
+          Submit Information
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -111,11 +116,14 @@ export default {
         english_reservation: false,
         address: "",
       },
+      submitted: false,
     };
   },
   methods: {
     submitForm() {
       create(this.doctor);
+      this.submitted = true;
+      console.log(this.submitted)
     },
     createDoctor() {
       const doctor = this.doctors.length ? this.doctors[0] : {};

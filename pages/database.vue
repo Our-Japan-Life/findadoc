@@ -1,10 +1,15 @@
 <template>
-  <div class="center" id="app">
-    <div><h2>Database</h2></div>
-    <div>
-      <button class="add-doctor-btn" @click="modal.showModal = true">
-        Add Doctor
-      </button>
+  <div class="" id="app">
+    <div class="db-div">
+      <div>
+        <h2>Database</h2>
+      </div>
+      <div>
+        <button class="add-doctor-btn" @click="modal.showModal = true">
+          Add Doctor
+        </button>
+      </div>
+      <div v-for="item in doctors" :key="item.id">Dr. {{ item.first_name }} {{ item.last_name }}</div>
     </div>
     <transition name="fade" appear>
       <div
@@ -26,6 +31,9 @@ import { getAll, create, remove, update } from "../firebase";
 import { buildDoctor, rateDoctor } from "../util";
 
 export default {
+  mounted() {
+    this.getDoctors();
+  },
   data() {
     return {
       doctors: [],
@@ -59,19 +67,19 @@ export default {
         this.doctors = tempDoctors;
       });
     },
-    submitForm() {
-      create(this.doctor);
-    },
-    createDoctor() {
-      const doctor = this.doctors.length ? this.doctors[0] : {};
-      if (doctor) {
-        rateDoctor(doctor);
-        delete doctor.id;
-        create(doctor, () => {
-          this.getDoctors();
-        });
-      }
-    },
+    // submitForm() {
+    //   create(this.doctor);
+    // },
+    // createDoctor() {
+    //   const doctor = this.doctors.length ? this.doctors[0] : {};
+    //   if (doctor) {
+    //     rateDoctor(doctor);
+    //     delete doctor.id;
+    //     create(doctor, () => {
+    //       this.getDoctors();
+    //     });
+    //   }
+    // },
     deleteDoctor() {
       if (this.doctors && this.doctors.length) {
         const index = this.doctors.length - 1;
@@ -108,9 +116,14 @@ export default {
   cursor: pointer;
 }
 .db-div {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  width: 80%;
+  
+  /* max-width: 400px; */
+  /* align-items: center; */
+  /* align-content: center; */
+  /* display: flex; */
+  /* justify-content: center; */
+  text-align: center;
 }
 .modal {
   position: fixed;
@@ -139,7 +152,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
