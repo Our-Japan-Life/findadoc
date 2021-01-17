@@ -11,20 +11,16 @@
       </div>
       <div>
         <div v-for="item in doctors" :key="item.id" class="card column">
+          <div class="db-icons"><img src="~/assets/menu-dots.svg" /></div>
           <div class="db-padding">
             <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
           </div>
           <div class="db-padding">Specialty: {{ item.specialties[0] }}</div>
           <div class="db-padding">Rating: {{ item.rating }}/5</div>
           <div class="db-padding">Location: {{ item.address }}</div>
-          <!-- <div class="db-padding">Website: {{ item.website }}</div> -->
           <div class="db-icons">
-            <!-- <div class="db-links"> -->
               <a class="db-links" :href="item.website"><img src="~/assets/homepage.svg" /></a>
-            <!-- </div> -->
-            <!-- <div class="db-links"> -->
               <a class="db-links" :href="item.location"><img src="~/assets/map.svg" /></a>
-            <!-- </div> -->
           </div>
         </div>
       </div>
@@ -135,7 +131,7 @@ export default {
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 0px;
+  /* padding-left: 10px; */
   text-align: center;
   background-color: #fff;
   border-radius: 8px;
@@ -164,6 +160,7 @@ export default {
 .db-padding {
   margin: 10px;
   text-align: left;
+  margin-left: 20px;
 }
 .db-icons {
   margin: 10px;
@@ -198,7 +195,6 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
