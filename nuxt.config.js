@@ -1,17 +1,7 @@
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
-  services: {
-    auth: true,
-    firestore: true,
-    functions: true,
-    storage: true,
-    database: false,
-    messaging: true,
-    performance: true,
-    analytics: true,
-    remoteConfig: true
-  },
+  
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: "findadoc",
@@ -26,8 +16,10 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  // Router settings
+  router: {
+    middleware: ['authenticated']
+  },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -36,7 +28,34 @@ export default {
   buildModules: [],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: [
+    [
+      "@nuxtjs/firebase",
+      {
+        config: {
+          apiKey: "AIzaSyAjIhMU4Co5LvhhEoqiGqbF5R6zmsQfIZY",
+          authDomain: "findadoc-bc230.firebaseapp.com",
+          databaseURL: "https://findadoc-bc230-default-rtdb.firebaseio.com",
+          projectId: "findadoc-bc230",
+          storageBucket: "findadoc-bc230.appspot.com",
+          messagingSenderId: "871643437476",
+          appId: "1:871643437476:web:d7271d01ee125e9f7bc931",
+          measurementId: "G-SN6SHYMJKY"
+        },
+        services: {
+          auth: true,
+          firestore: true,
+          functions: true,
+          storage: true,
+          database: false,
+          messaging: false,
+          performance: false,
+          analytics: false,
+          remoteConfig: false
+        },
+      }
+    ]
+  ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}

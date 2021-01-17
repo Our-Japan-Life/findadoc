@@ -4,16 +4,17 @@
       <h2>Log in to your account</h2>
     </div>
     <div>
-      <input class="input-fields" type="email" placeholder="Email address" required />
+      <input class="input-fields" type="email" placeholder="Email address" v-model="account.email" required />
     </div>
     <div>
-      <input class="input-fields" id="user-password" type="password" placeholder="Password" required />
+      <input @input="checkPasswordLength()" class="input-fields" id="user-password" type="password" placeholder="Password" v-model="account.password" required />
     </div>
     <div>
       <input type="checkbox" @click="showPassword">Show password
     </div>
+    <div v-if="passwordMinChars === false">Password too short</div>
     <div>
-      <button class="login-btn-form">Login</button>
+      <button class="login-btn-form" @click="login">Login</button>
     </div>
     
     <div>Don't have an account? <nuxt-link to="/signup">Sign up!</nuxt-link></div>
@@ -22,7 +23,27 @@
 
 <script>
 export default {
+  data: () => ({
+    account: {
+      email: "",
+      password: "",
+    },
+    isError: false,
+    errMsg: "",
+    passwordMinChars: null,
+  }),
 methods: {
+      login() {
+      this.$store.dispatch("admin/login", this.account).catch((error) => {
+        console.log(error);
+        this.isError = true;
+        this.errMsg = error.code;
+        setTimeout(() => {
+          this.isError = false;
+        }, 5000);
+      });
+      this.$router.push("/");
+    },
     showPassword() {
       const togglePassword = document.getElementById("user-password");
       if (togglePassword.type === "password") {
@@ -30,6 +51,10 @@ methods: {
       } else {
         togglePassword.type = "password";
       }
+    },
+    checkPasswordLength() {
+      const passwordInput = document.getElementById("user-password").value
+      this.passwordMinChars = passwordInput.length >= 6;
     },
   },
 };
