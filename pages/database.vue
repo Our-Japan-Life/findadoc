@@ -15,11 +15,7 @@
           <div class="db-padding">
             <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
           </div>
-          <div v-for="specialty of item.specialties" :key="specialty" class="db-padding">
-            <!-- <div> -->
-              {{ specialty }}
-            <!-- </div> -->
-          </div>
+          <div class="db-padding">Specialty: {{ item.specialties.join(', ') }}</div>
           <div class="db-padding">Rating: {{ item.rating }}/5</div>
           <div class="db-padding">Location: {{ item.address }}</div>
           <div class="db-icons">
