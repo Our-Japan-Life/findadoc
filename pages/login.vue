@@ -7,10 +7,10 @@
       <input class="input-fields" type="email" placeholder="Email address" required />
     </div>
     <div>
-      <input class="input-fields" type="password" placeholder="Password" required />
+      <input class="input-fields" id="user-password" type="password" placeholder="Password" required />
     </div>
     <div>
-      <input type="checkbox">Show password
+      <input type="checkbox" @click="showPassword">Show password
     </div>
     <div>
       <button class="login-btn-form">Login</button>
@@ -21,7 +21,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+methods: {
+    showPassword() {
+      const togglePassword = document.getElementById("user-password");
+      if (togglePassword.type === "password") {
+        togglePassword.type = "text";
+      } else {
+        togglePassword.type = "password";
+      }
+    },
+  },
+};
 </script>
 
 <style>
