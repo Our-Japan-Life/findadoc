@@ -2,7 +2,7 @@
   <div class="center">
     <form action="submit" class="">
       <div class="center">
-        <h1>Add a Doctor</h1>
+        <h1 class="modal-title">Add a Doctor</h1>
       </div>
       <div class="center">
         <p>Please fill out this form as accurately as possible.</p>
@@ -132,7 +132,7 @@ export default {
 </script>
 
 <style>
-h1 {
+.modal-title {
   color: black;
 }
 .padded-input {
