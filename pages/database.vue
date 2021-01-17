@@ -19,8 +19,8 @@
           <div class="db-padding">Rating: {{ item.rating }}/5</div>
           <div class="db-padding">Location: {{ item.address }}</div>
           <div class="db-icons">
-              <a class="db-links" :href="item.website"><img src="~/assets/homepage.svg" /></a>
-              <a class="db-links" :href="item.location"><img src="~/assets/map.svg" /></a>
+              <a class="db-links" :href="item.website" target="_blank" rel="noopener noreferrer"><img src="~/assets/homepage.svg" /></a>
+              <a class="db-links" :href="item.location" target="_blank" rel="noopener noreferrer"><img src="~/assets/map.svg" /></a>
           </div>
         </div>
       </div>
