@@ -1,28 +1,65 @@
 <template>
   <div class="center">
     <h2>Database</h2>
+    <div>
+      {{ doctors }}
+    </div>
+    <button @click="getDoctors()">Read all from Firestore</button>
+    <button @click="createDoctor()">Send new document to Firestore</button>
+    <button @click="deleteDoctor()">Delete from Firestore</button>
+    <button @click="updateDoctor()">Send update to Firestore</button>
   </div>
 </template>
 
 <script>
-import firebase from "firebase";
-import "firebase/firestore";
+import { getAll, create, remove, update } from "../firebase";
+import { rateDoctor } from "../util";
 
-const config = {
-  apiKey: "AIzaSyAjIhMU4Co5LvhhEoqiGqbF5R6zmsQfIZY",
-  authDomain: "findadoc-bc230.firebaseapp.com",
-  databaseURL: "https://findadoc-bc230-default-rtdb.firebaseio.com",
-  projectId: "findadoc-bc230",
-  storageBucket: "findadoc-bc230.appspot.com",
-  messagingSenderId: "871643437476",
-  appId: "1:871643437476:web:d7271d01ee125e9f7bc931",
-  measurementId: "G-SN6SHYMJKY"
+export default {
+  data() {
+    return {
+      doctors: [],
+    };
+  },
+  methods: {
+    getDoctors() {
+      getAll((querySnapshot) => {
+        const tempDoctors = [];
+
+        querySnapshot.forEach((doc) => {
+          const doctor = { id: doc.id, ...doc.data() };
+          tempDoctors.push(doctor);
+        });
+
+        this.doctors = tempDoctors;
+      });
+    },
+    createDoctor() {
+      const doctor = this.doctors.length ? this.doctors[0] : {};
+      if (doctor) {
+        rateDoctor(doctor);
+        delete doctor.id;
+        create(doctor);
+      }
+    },
+    deleteDoctor() {
+      if (this.doctors && this.doctors.length) {
+        const index = this.doctors.length - 1;
+        const doctorId = this.doctors[index].id;
+        remove(doctorId);
+      }
+    },
+    updateDoctor() {
+      const doctor = this.doctors.length ? this.doctors[0] : {};
+      if (doctor) {
+        rateDoctor(doctor);
+        const doctorId = doctor.id;
+        delete doctor.id;
+        update(doctorId, doctor);
+      }
+    },
+  },
 };
-
-// const firebaseApp = firebase.initializeApp(config);
-const firestore = firebase.firestore();
-const doctors = firestore.collection('doctors');
-export default {};
 </script>
 
 <style></style>

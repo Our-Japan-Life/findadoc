@@ -14,5 +14,7 @@
     "firebase": "^8.2.3",
     "nuxt": "^2.14.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "firebase-tools": "^9.2.1"
+  }
 }
