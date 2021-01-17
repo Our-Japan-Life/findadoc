@@ -1,4 +1,4 @@
-# findadoc
+# Find a Doc
 
 ## Demo
 https://findadoc-bc230.web.app/database
