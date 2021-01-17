@@ -11,3 +11,26 @@ export const rateDoctor = doctor => {
     }
   }
 };
+
+export const buildDoctor = param => {
+  const doctor = {
+    first_name: "",
+    last_name: "",
+    last_updated: null,
+    location: null,
+    rating: "",
+    total_ratings: "",
+    specialties: [],
+    website: "",
+    english_reservation: false,
+    address: ""
+  }
+
+  for (const property in doctor) {
+    if (param[property]) {
+      doctor[property] = param[property];
+    }
+  }
+
+  return doctor;
+}

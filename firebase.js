@@ -38,10 +38,10 @@ export const get = (id, callback) => {
     .then(callback);
 };
 
-export const update = (id, doctor) => {
-  doctorsCollection.doc(id).update(doctor);
+export const update = (id, doctor, callback = () => {}) => {
+  doctorsCollection.doc(id).update(doctor).then(callback);
 };
 
-export const remove = id => {
-  doctorsCollection.doc(id).delete();
+export const remove = (id, callback = () => {}) => {
+  doctorsCollection.doc(id).delete().then(callback);
 };

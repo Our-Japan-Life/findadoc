@@ -1,6 +1,6 @@
 <template>
   <div class="header-bg">
-    <div class="center">
+    <div class="center title">
       <nuxt-link to="/"><h1>Our Japan Life</h1></nuxt-link>
     </div>
     <div class="center">
@@ -82,5 +82,8 @@ h1 {
   font-size: 16px;
   background-color: rgb(70, 68, 85);
   color: rgb(226, 226, 226);
+}
+.title {
+  padding-left: 10px;
 }
 </style>

@@ -51,7 +51,7 @@ methods: {
   padding: 0px;
   border-radius: 5px;
   border: 200px;
-  background-color: rgb(163, 157, 197);
+  background-color: rgb(194, 227, 228);
 }
 .login-btn-form {
   background-color: rgb(47, 45, 58);
