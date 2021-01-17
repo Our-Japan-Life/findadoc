@@ -11,12 +11,21 @@
       </div>
       <div>
         <div v-for="item in doctors" :key="item.id" class="card column">
-            <div class="db-padding"><h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2></div>
-            <div class="db-padding">Specialty: {{ item.specialties[0] }}</div>
-            <div class="db-padding"> Rating: {{ item.rating }}/5</div>
-            <div class="db-padding">Location: {{ item.address }}</div>
-            <!-- <div class="db-padding">Website: {{ item.website }}</div> -->
-            <div class="db-globe"><a :href="item.website"><img src="~/assets/url.svg" /></a></div>
+          <div class="db-padding">
+            <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
+          </div>
+          <div class="db-padding">Specialty: {{ item.specialties[0] }}</div>
+          <div class="db-padding">Rating: {{ item.rating }}/5</div>
+          <div class="db-padding">Location: {{ item.address }}</div>
+          <!-- <div class="db-padding">Website: {{ item.website }}</div> -->
+          <div class="db-icons">
+            <!-- <div class="db-links"> -->
+              <a class="db-links" :href="item.website"><img src="~/assets/homepage.svg" /></a>
+            <!-- </div> -->
+            <!-- <div class="db-links"> -->
+              <a class="db-links" :href="item.location"><img src="~/assets/map.svg" /></a>
+            <!-- </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -149,14 +158,19 @@ export default {
   width: 80%;
   text-align: center;
 }
+.db-links {
+  margin-left: 10px;
+}
 .db-padding {
   margin: 10px;
   text-align: left;
 }
-.db-globe {
+.db-icons {
   margin: 10px;
   text-align: right;
+  padding-left: 20px;
 }
+
 .modal {
   position: fixed;
   top: 50%;
