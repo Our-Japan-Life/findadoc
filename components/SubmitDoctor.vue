@@ -134,14 +134,14 @@ export default {
       const fields = ["first_name", "last_name", "address", "rating"];
 
       for (const field of fields) {
-        validForm &&= !!this.doctor[field];
+        validForm = validForm && this.doctor[field] != "";
       }
 
-      validForm &&= this.doctor.specialties.length > 0;
-
-      validForm &&=
-        this.doctor.english_reservation !== null &&
-        this.doctor.english_reservation !== undefined;
+      validForm = validForm && this.doctor.specialties.length > 0;
+      validForm =
+        validForm &&
+        (this.doctor.english_reservation === true ||
+          this.doctor.english_reservation === false);
 
       if (validForm) {
         this.submitForm();
