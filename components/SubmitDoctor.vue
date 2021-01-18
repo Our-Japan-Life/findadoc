@@ -1,25 +1,22 @@
 <template>
   <div>
     <div v-if="submitted === true">
-      <div class="close-window">
-        <button>Close</button>
-      </div>
       <div class="center">
         <h1 class="modal-title">Thank you for helping our community grow!</h1>
       </div>
       <div class="center">
-        <button class="add-doctor-btn" @click="submitted = false">Add another doctor</button>
+        <button @click="resetDoctor()">Add another doctor</button>
+        <button @click="close()">Close</button>
       </div>
     </div>
     <div class="center" v-if="submitted === false">
-      <form action="submit" class="">
+      <form @submit.prevent="validateForm" action="">
         <div class="center">
           <h1 class="modal-title">Add a Doctor</h1>
         </div>
         <div class="center">
           <p>Please fill out this form as accurately as possible.</p>
         </div>
-
         <div>
           <input
             class="input-fields"
@@ -39,30 +36,29 @@
           />
         </div>
         <div class="padded-input center">
-          <label for="doctors-specialty" class="label-margin"
-            >Doctor's Specialty:</label
-          >
-
+          <label for="doctors-specialty" class="label-margin">
+            Doctor's Specialty:
+          </label>
           <select
             name="doctors-specialty"
             id="doctors-specialty"
             v-model="doctor.specialties"
             required
+            multiple
           >
-            <option value="General Physician">General Physician</option>
-            <option value="Dermatologist">Dermatologist</option>
-            <option value="Dentist">Dentist</option>
+            <option v-for="option in specialty_options" :key="option">
+              {{ option }}
+            </option>
           </select>
         </div>
         <div class="padded-input center">
-          <label for="doctors-rating" class="label-margin"
-            >Doctor's English-Speaking Ability:</label
-          >
-
+          <label for="doctors-rating" class="label-margin">
+            Doctor's English-Speaking Ability:
+          </label>
           <select
             name="doctors-rating"
             id="doctors-rating"
-            v-model="doctor.rating"
+            v-model.number="doctor.rating"
             required
           >
             <option value="1">1 (Low)</option>
@@ -82,21 +78,20 @@
           />
         </div>
         <div class="padded-input center">
-          <label for="doctors-reservation" class="label-margin"
-            >Can you make reservations in English?</label
-          >
-
+          <label for="doctors-reservation" class="label-margin">
+            Can you make reservations in English?
+          </label>
           <select
             name="doctors-reservations"
             id="doctors-reservations"
             v-model="doctor.english_reservation"
             required
           >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option :value="true">Yes</option>
+            <option :value="false">No</option>
           </select>
         </div>
-        <button @click="submitForm()" class="submit-btn-form">
+        <button type="submit" class="submit-btn-form">
           Submit Information
         </button>
       </form>
@@ -105,43 +100,82 @@
 </template>
 
 <script>
-import { getAll, create, remove, update } from "~/firebase";
-import { buildDoctor, rateDoctor } from "~/util";
+import { create } from "~/firebase";
 
 export default {
   data() {
     return {
-      doctors: [],
       doctor: {
-        first_name: "",
-        last_name: "",
+        first_name: null,
+        last_name: null,
         last_updated: null,
         location: null,
-        rating: "",
-        total_ratings: "",
+        rating: null,
+        total_ratings: 0,
         specialties: [],
-        website: "",
-        english_reservation: false,
-        address: "",
+        website: null,
+        english_reservation: null,
+        address: null,
       },
       submitted: false,
+      specialty_options: [
+        "General Physician",
+        "Dermatologist",
+        "Dentist",
+        "Oncology",
+        "Infectious Disease",
+        "Nephrology",
+      ],
     };
   },
   methods: {
-    submitForm() {
-      create(this.doctor);
-      this.submitted = true;
-      console.log(this.submitted);
-    },
-    createDoctor() {
-      const doctor = this.doctors.length ? this.doctors[0] : {};
-      if (doctor) {
-        rateDoctor(doctor);
-        delete doctor.id;
-        create(doctor, () => {
-          this.getDoctors();
-        });
+    validateForm(event) {
+      let validForm = true;
+      const fields = ["first_name", "last_name", "address", "rating"];
+
+      for (const field of fields) {
+        validForm &&= !!this.doctor[field];
       }
+
+      validForm &&= this.doctor.specialties.length > 0;
+
+      validForm &&=
+        this.doctor.english_reservation !== null &&
+        this.doctor.english_reservation !== undefined;
+
+      if (validForm) {
+        this.submitForm();
+        return validForm;
+      }
+
+      event.preventDefault();
+    },
+    submitForm() {
+      if (this.doctor.rating) {
+        this.doctor.total_ratings++;
+      }
+
+      create(this.doctor);
+
+      this.submitted = true;
+
+      this.refresh();
+    },
+    close() {
+      this.$emit("close");
+    },
+    refresh() {
+      this.$emit("refresh");
+    },
+    resetDoctor() {
+      this.submitted = false;
+
+      for (const field in this.doctor) {
+        this.doctor[field] = null;
+      }
+
+      this.doctor.specialties = [];
+      this.doctor.total_ratings = 0;
     },
   },
 };

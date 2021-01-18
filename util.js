@@ -24,7 +24,7 @@ export const buildDoctor = param => {
     website: "",
     english_reservation: false,
     address: ""
-  }
+  };
 
   for (const property in doctor) {
     if (param[property]) {
@@ -33,4 +33,4 @@ export const buildDoctor = param => {
   }
 
   return doctor;
-}
+};

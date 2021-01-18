@@ -5,33 +5,35 @@
         <h2>English-Speaking Doctors in Japan</h2>
       </div>
       <div>
-        <button class="add-doctor-btn" @click="modal.showModal = true">
-          Add Doctor
-        </button>
+        <button class="add-doctor-btn" @click="showModal()">Add Doctor</button>
       </div>
       <div>
         <div v-for="item in doctors" :key="item.id" class="card column">
-          <div class="db-icons"><img src="~/assets/menu-dots.svg" /></div>
+          <div class="db-icons">
+            <img src="~/assets/menu-dots.svg" alt="options" />
+          </div>
           <div class="db-padding">
             <h2>Dr. {{ item.first_name }} {{ item.last_name }}</h2>
           </div>
-          <div class="db-padding">Specialty: {{ item.specialties.join(', ') }}</div>
+          <div class="db-padding">
+            Specialty: {{ item.specialties.join(", ") }}
+          </div>
           <div class="db-padding">Rating: {{ item.rating }}/5</div>
-          <div class="db-padding">Location: {{ item.address }}</div>
+          <div class="db-padding">Address: {{ item.address }}</div>
           <div class="db-icons">
             <a
               class="db-links"
               :href="item.website"
               target="_blank"
               rel="noopener noreferrer"
-              ><img src="~/assets/homepage.svg"
+              ><img src="~/assets/homepage.svg" alt="website"
             /></a>
             <a
               class="db-links"
               :href="item.location"
               target="_blank"
               rel="noopener noreferrer"
-              ><img src="~/assets/map.svg"
+              ><img src="~/assets/map.svg" alt="location"
             /></a>
           </div>
         </div>
@@ -41,20 +43,20 @@
       <div
         class="modal-overlay"
         v-if="modal.showModal"
-        @click="modal.showModal = false"
+        @click="hideModal()"
       ></div>
     </transition>
     <transition name="slide" appear>
       <div class="modal" v-if="modal.showModal">
-        <SubmitDoctor />
+        <SubmitDoctor @refresh="getDoctors()" @close="hideModal()" />
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import { getAll, create, remove, update } from "../firebase";
-import { buildDoctor, rateDoctor } from "../util";
+import { getAll, remove, update } from "../firebase";
+import { rateDoctor } from "../util";
 
 export default {
   mounted() {
@@ -81,6 +83,13 @@ export default {
     };
   },
   methods: {
+    showModal() {
+      this.modal.showModal = true;
+    },
+    hideModal() {
+      this.modal.showModal = false;
+      this.getDoctors();
+    },
     getDoctors() {
       getAll((querySnapshot) => {
         const tempDoctors = [];
@@ -132,7 +141,7 @@ export default {
 </script>
 
 <style>
-.add-doctor-btn {
+/* .add-doctor-btn {
   background-color: rgb(194, 227, 228);
   height: 30px;
   border: 0px;
@@ -141,7 +150,7 @@ export default {
   font-size: 16px;
   color: #000;
   cursor: pointer;
-}
+} */
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   /* padding-left: 10px; */
