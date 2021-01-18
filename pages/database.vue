@@ -96,6 +96,16 @@ export default {
 
         querySnapshot.forEach((doc) => {
           const doctor = { id: doc.id, ...doc.data() };
+
+          if (!Array.isArray(doctor.specialties)) {
+            console.error(
+              `IllegalFormatException: ${doc.id} contains malformed 'specialties'`,
+              doc.data()
+            );
+            const specialties = doctor.specialties;
+            doctor.specialties = [specialties];
+          }
+
           tempDoctors.push(doctor);
         });
 
